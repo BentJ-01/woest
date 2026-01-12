@@ -21,9 +21,9 @@ body {
 }
 
 body {
-  font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: "Avenir Next", "Avenir", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   color: var(--ink);
-  background: #0d3b2f;
+  background: #264233;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
 }
@@ -38,7 +38,7 @@ a {
   top: 0;
   left: 0;
   width: 100%;
-  height: 70px;
+  height: 102px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -49,33 +49,41 @@ a {
 }
 
 .nav-logo {
-  font-size: 32px;
-  font-weight: 800;
-  letter-spacing: 0.08em;
-  cursor: default;
-  color: var(--ink);
+  display: flex;
+  align-items: center;
+  height: 98px;
+}
+
+.nav-logo img {
+  height: 100%;
+  width: auto;
+  display: block;
 }
 
 .nav-contact-btn {
-  padding: 10px 24px;
+  padding: 14px 28px;
   background: var(--ink);
   color: var(--white);
   border-radius: 30px;
   font-weight: 600;
-  font-size: 14px;
-  transition: transform 0.15s ease, background 0.15s ease;
+  font-size: 16px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0;
+  transition: transform 0.15s ease, background 0.15s ease, box-shadow 0.15s ease;
 }
 
 .nav-contact-btn:hover {
   transform: translateY(-1px);
   background: var(--accent);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18);
 }
 
 .split-container {
-  margin-top: 70px;
+  margin-top: 102px;
   position: relative;
   width: 100%;
-  min-height: calc(100vh - 70px);
+  min-height: calc(100vh - 102px);
 }
 
 .top-half {
@@ -83,7 +91,7 @@ a {
   top: 0;
   left: 0;
   width: 100%;
-  height: 50%;
+  height: 55%;
   overflow: hidden;
 }
 
@@ -91,7 +99,7 @@ a {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center;
+  object-position: center 55%;
 }
 
 .bottom-half {
@@ -99,68 +107,94 @@ a {
   bottom: 0;
   left: 0;
   width: 100%;
-  height: 50%;
-  background: #0d3b2f;
+  height: 45%;
+  background: #264233;
   display: flex;
   align-items: center;
   justify-content: center;
-  text-align: center;
+  text-align: left;
   padding: 40px 20px;
   color: #f2f5f0;
 }
 
-.contact-content h1 {
-  font-size: clamp(1.8rem, 4vw, 3rem);
-  font-weight: 800;
-  letter-spacing: 0.02em;
-  margin-bottom: 20px;
-  color: #f2f5f0;
+.contact-content {
+  width: min(960px, 92vw);
+  display: flex;
+  justify-content: space-between;
+  gap: 32px;
+  align-items: flex-start;
+  flex-wrap: wrap;
 }
 
-.contact-details {
+.contact-left {
   display: flex;
   flex-direction: column;
   gap: 10px;
+  min-width: 220px;
 }
 
-.contact-details p {
+.contact-left h1 {
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  margin-bottom: 12px;
+  color: #f2f5f0;
+}
+
+.contact-left p {
   font-size: 16px;
   color: rgba(242, 245, 240, 0.9);
 }
 
-.contact-details a {
+.contact-right {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-width: 200px;
+  text-align: right;
+  margin-left: auto;
+  align-items: flex-end;
+}
+
+.contact-right a {
   color: #f2f5f0;
   font-weight: 700;
 }
 
 .center-logo {
   position: absolute;
-  top: 50%;
+  top: 58%;
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 10;
 }
 
 .logo-circle {
-  width: 180px;
-  height: 180px;
+  width: 220px;
+  height: 220px;
   border-radius: 50%;
-  background: #0d3b2f;
+  background: #264233;
+  border: 2px solid #264233;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 64px;
-  font-weight: 800;
-  color: #f2f5f0;
+  overflow: hidden;
+}
+
+.logo-circle img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.2);
 }
 
 .footer {
-  background: #0d3b2f;
+  background: #264233;
   color: #f2f5f0;
   text-align: center;
   padding: 14px 12px 18px;
   font-weight: 700;
-  border-top: 1px solid #0b3026;
+  border-top: 1px solid #264233;
 }
 
 .footer a {
@@ -172,22 +206,22 @@ a {
     padding: 0 20px;
   }
 
-  .nav-logo {
-    font-size: 26px;
-  }
-
-  .nav-contact-btn {
-    padding: 10px 18px;
-  }
-
   .logo-circle {
     width: 140px;
     height: 140px;
-    font-size: 48px;
   }
 
   .contact-content h1 {
     font-size: 1.6rem;
+  }
+
+  .contact-content {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .contact-right {
+    text-align: left;
   }
 }
 
@@ -199,6 +233,5 @@ a {
   .logo-circle {
     width: 120px;
     height: 120px;
-    font-size: 42px;
   }
 }
