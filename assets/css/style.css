@@ -60,14 +60,90 @@ body {
   text-decoration: none;
   border-radius: 50px;
   font-weight: 600;
-  font-size: 16px;
-  transition: all 0.3s ease;
+  transition: var(--transition);
+  position: relative;
 }
 
-.nav-contact-btn:hover {
-  background: var(--light-green);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(13, 59, 47, 0.3);
+.main-nav a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 2px;
+  background: var(--accent);
+  transition: width 0.3s ease;
+}
+
+.main-nav a:hover {
+  background: rgba(241, 245, 242, 0.12);
+}
+
+.main-nav a:hover::after {
+  width: 60%;
+}
+
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  background: rgba(111, 207, 151, 0.15);
+  border: 2px solid rgba(111, 207, 151, 0.3);
+  border-radius: 12px;
+  cursor: pointer;
+  padding: 12px;
+  width: 48px;
+  height: 48px;
+  position: relative;
+  z-index: 1001;
+  transition: var(--transition);
+}
+
+.nav-toggle:hover {
+  background: rgba(111, 207, 151, 0.25);
+  border-color: rgba(111, 207, 151, 0.5);
+  transform: scale(1.05);
+}
+
+.burger-line {
+  display: block;
+  width: 24px;
+  height: 3px;
+  background: #f1f5f2;
+  border-radius: 3px;
+  transition: var(--transition);
+  position: absolute;
+}
+
+.burger-line:nth-child(1) {
+  top: 14px;
+}
+
+.burger-line:nth-child(2) {
+  top: 22px;
+}
+
+.burger-line:nth-child(3) {
+  top: 30px;
+}
+
+/* Animated X when open */
+.nav-toggle[aria-expanded="true"] .burger-line:nth-child(1) {
+  top: 22px;
+  transform: rotate(45deg);
+}
+
+.nav-toggle[aria-expanded="true"] .burger-line:nth-child(2) {
+  opacity: 0;
+  transform: translateX(20px);
+}
+
+.nav-toggle[aria-expanded="true"] .burger-line:nth-child(3) {
+  top: 22px;
+  transform: rotate(-45deg);
 }
 
 /* Split Container */
@@ -216,16 +292,98 @@ body {
     margin-bottom: 30px;
   }
 
-  .contact-details p {
-    font-size: 14px;
+@media (max-width: 700px) {
+  .main-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100vh;
+    background: linear-gradient(135deg, rgba(26, 94, 70, 0.98), rgba(45, 122, 95, 0.98));
+    backdrop-filter: blur(20px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 32px;
+    padding: 80px 40px;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-20px);
+    transition: opacity 0.4s ease, transform 0.4s ease, visibility 0.4s;
   }
 }
 
-@media (max-width: 480px) {
-  .logo-circle {
-    width: 120px;
-    height: 120px;
-    font-size: 50px;
+  .main-nav.open {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+
+  .main-nav a {
+    font-size: 1.8rem;
+    padding: 16px 32px;
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 16px;
+    color: #fff;
+    font-weight: 600;
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  .main-nav.open a {
+    animation: slideInMenuItem 0.4s ease forwards;
+  }
+
+  .main-nav.open a:nth-child(1) { animation-delay: 0.1s; }
+  .main-nav.open a:nth-child(2) { animation-delay: 0.2s; }
+  .main-nav.open a:nth-child(3) { animation-delay: 0.3s; }
+  .main-nav.open a:nth-child(4) { animation-delay: 0.4s; }
+
+  @keyframes slideInMenuItem {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .main-nav a::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(111, 207, 151, 0.3);
+    transform: translate(-50%, -50%);
+    transition: width 0.5s ease, height 0.5s ease;
+  }
+
+  .main-nav a:hover::before {
+    width: 400px;
+    height: 400px;
+  }
+
+  .main-nav a:hover {
+    background: rgba(111, 207, 151, 0.2);
+    border-color: var(--fresh-green);
+    transform: scale(1.05);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  }
+
+  .main-nav a::after {
+    display: none;
   }
 
   .contact-content h1 {
