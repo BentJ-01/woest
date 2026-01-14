@@ -128,11 +128,12 @@ a {
   width: 100%;
   background: #264233;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
   text-align: left;
-  padding: calc(var(--logo-size) / 2 + clamp(16px, 3vw, 32px)) var(--page-padding) clamp(32px, 4vw, 60px);
+  padding: clamp(48px, 5vw, 72px) var(--page-padding) clamp(32px, 4vw, 60px);
   color: #f2f5f0;
+  min-height: calc(45vh - var(--nav-height));
 }
 
 .contact-content {
