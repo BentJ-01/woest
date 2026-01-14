@@ -77,20 +77,22 @@ a {
   padding: 14px 32px;
   background: #264233;
   color: #C6C6C4;
+  border: 2px solid #264233;
   border-radius: 30px;
   font-weight: 600;
   font-size: 17px;
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  transition: transform 0.6s ease, background 0.15s ease, box-shadow 0.15s ease;
+  transition: transform 0.3s ease, background 0.3s ease, color 0.3s ease, border-color 0.3s ease;
   white-space: nowrap;
 }
 
 .nav-contact-btn:hover {
-  transform: translateY(-1px);
-  background: #3d6340;
-  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18);
+  transform: scale(1.1);
+  background: white;
+  color: #264233;
+  border-color: #264233;
 }
 
 .split-container {
