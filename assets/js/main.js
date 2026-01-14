@@ -10,6 +10,17 @@ document.addEventListener('DOMContentLoaded', () => {
 function createFallingLeaves() {
   const numLeaves = 30;
   
+  // PNG leaf images from bladeren folder
+  const leafImages = [
+    'assets/img/bladeren/mapleblad.png',
+    'assets/img/bladeren/groenblad2.png',
+    'assets/img/bladeren/groenblad1.png',
+    'assets/img/bladeren/groenBlad.png',
+    'assets/img/bladeren/eikenblad.png',
+    'assets/img/bladeren/doodBlad.png'
+  ];
+  
+  /* SVG leaves (commented out - uncomment to use instead of PNG)
   const leafSVGs = [
     // Oak leaf - highly detailed
     `<svg viewBox="0 0 80 100" xmlns="http://www.w3.org/2000/svg">
@@ -148,11 +159,22 @@ function createFallingLeaves() {
       <path d="M39 62 C44 64 49 68 52 74" stroke="#3f5a28" stroke-width="0.7" fill="none"/>
     </svg>`
   ];
+  */
 
   for (let i = 0; i < numLeaves; i++) {
     const leaf = document.createElement('div');
     leaf.className = 'falling-leaf';
-    leaf.innerHTML = leafSVGs[Math.floor(Math.random() * leafSVGs.length)];
+    
+    // Use random PNG image from bladeren folder
+    const img = document.createElement('img');
+    img.src = leafImages[Math.floor(Math.random() * leafImages.length)];
+    img.alt = 'falling leaf';
+    img.style.width = '100%';
+    img.style.height = '100%';
+    leaf.appendChild(img);
+    
+    // Uncomment below to use SVG instead
+    // leaf.innerHTML = leafSVGs[Math.floor(Math.random() * leafSVGs.length)];
     
     // Random starting position
     leaf.style.left = Math.random() * 100 + '%';
