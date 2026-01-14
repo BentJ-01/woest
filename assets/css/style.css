@@ -7,15 +7,10 @@
 }
 
 :root {
-  --ink: #142016;
-  --muted: #5c635d;
-  --accent: #4c7a4e;
-  --beige: #e9e1d6;
   --white: #ffffff;
   --nav-height: 102px;
   --logo-size: 220px;
   --page-padding: 40px;
-  font-size: 16px;
 }
 
 @media (max-width: 900px) {
@@ -41,7 +36,6 @@ body {
 
 body {
   font-family: "Avenir Next", "Avenir", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  color: var(--ink);
   background: #264233;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
@@ -152,14 +146,6 @@ a {
   min-width: 220px;
 }
 
-.contact-left h1 {
-  font-size: clamp(1.8rem, 4vw, 3rem);
-  font-weight: 800;
-  letter-spacing: 0.02em;
-  margin-bottom: 12px;
-  color: #f2f5f0;
-}
-
 .contact-left p {
   font-size: clamp(15px, 2vw, 18px);
   color: rgba(242, 245, 240, 0.9);
@@ -203,6 +189,12 @@ a {
   align-items: center;
   justify-content: center;
   overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.logo-circle:hover {
+  transform: scale(1.1);
 }
 
 .logo-circle img {
@@ -248,6 +240,43 @@ a {
   color: #f2f5f0;
 }
 
+/* Falling leaves animation */
+.falling-leaf {
+  position: fixed;
+  width: 90px;
+  height: 110px;
+  z-index: 9999;
+  background: transparent;
+  cursor: grab;
+  animation: fall var(--random-duration, 7s) var(--random-delay, 0s) ease-in forwards;
+}
+
+.falling-leaf.grabbed {
+  cursor: grabbing;
+  animation: none;
+  z-index: 10000;
+}
+
+.falling-leaf svg {
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.25));
+}
+
+@keyframes fall {
+  0% {
+    transform: translateY(0) rotate(0deg) translateX(0);
+  }
+  95% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(calc(100vh + 150px)) rotate(var(--random-rotation, 720deg)) translateX(var(--random-x, 50px));
+    opacity: 0;
+  }
+}
+
 @media (max-width: 1100px) {
   .contact-content {
     width: min(1000px, 96vw);
@@ -266,7 +295,7 @@ a {
   }
 
   .top-half {
-    min-height: 48vh;
+    min-height: 40vh;
   }
 
   .center-logo {
@@ -274,11 +303,12 @@ a {
     top: auto;
     left: auto;
     transform: none;
-    margin: -82px auto 8px;
+    margin: -110px auto 8px;
   }
 
   .bottom-half {
-    padding: clamp(28px, 6vw, 44px) var(--page-padding) clamp(38px, 7vw, 64px);
+    padding: clamp(20px, 4vw, 32px) var(--page-padding) clamp(38px, 7vw, 64px);
+    min-height: auto;
   }
 
   .contact-content {
@@ -306,11 +336,12 @@ a {
   }
 
   .center-logo {
-    margin-top: -64px;
+    margin-top: -90px;
   }
 
   .bottom-half {
-    padding: clamp(24px, 7vw, 40px) var(--page-padding) clamp(34px, 8vw, 58px);
+    padding: 16px var(--page-padding) clamp(32px, 7vw, 50px);
+    min-height: auto;
   }
 
   .contact-content {
